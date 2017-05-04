@@ -1,12 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="heroApp">
 <head>
   <meta charset="UTF-8">
   <title>Superhero Phone Book</title>
   <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
   <script src="app.js"></script>
+</head>
+<body ng-controller="HeroController as vm">
+  <h2>Who Ya Gonna Call?</h2>
+  <div ng-repeat="hero in vm.heros | filter: {name:vm.grumbleSearch}">
+    <img src="{{hero.img}}" alt="image">
+    <h4>{{hero.name}}</h4>
+    <p>{{hero.group}}{{hero.number}}</p>
+  </div>
+  <div>
+      <input type="text" ng-model="vm.newHero.name">
+      <br>
+      <input type="text" ng-model="vm.newHero.number">
+      <br>
+      <input type="text" ng-model="vm.newHero.group">
+      <br>
+      <button ng-click="vm.addHero()">Join The Fight!</button>
+    </div>
 </body>
 </html>
